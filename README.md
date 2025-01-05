@@ -186,7 +186,9 @@ Cosine similarity mengukur kesamaan antara dua vektor dan menentukan apakah kedu
 2. Implementasi hasil model
     Input wisata -> 'Sanur Beach'
 
-***=== Recommendation System Content Based-Cosine Similarity ===***
+**=== Recommendation System Content Based-Cosine Similarity ===**
+
+
 ======= 10 places to go based on item --> Sanur Beach ========
 1 Balekambang Beach : Malang District
 2 Goa Cina Beach : Dusun Trowotratih, Desa Sitiarjo Kecamatan Sumbermanjing Wetan, Malang 65111 Indonesia
@@ -213,12 +215,16 @@ Model ini menggunakan Binary Crossentropy untuk menghitung loss function, Adam (
 Nilai RMSE menunjukkan 0.2 dimana selama training nilai RMSE menurun dapat diartikan error semakin kecil
 
 4. Hasil implementasi model
-***=== Recommendation System Collaborative Based-Neural Network RecommenderNet ===***
+   
+**=== Recommendation System Collaborative Based-Neural Network RecommenderNet ===**
+
 ->Showing recommendations for users: 9409
+
 ->Recent destinattion with high ratings from user
     - [ Points of Interest & Landmarks ] Tegalalang Rice Terrace : Jalan Raya Ceking, Tegalalang 80517 Indonesia
     - [ Waterfalls ] Tegenungan Waterfall : Jl. Raya Tegenungan, Kemenuh, Ubud 80581 Indonesia
     - [ Beaches ] Kuta Beach - Bali : Kuta
+    
 10 places to go - recommended
 1 [ Nature & Wildlife Areas ] Sacred Monkey Forest Sanctuary : Jl. Monkey Forest, Ubud 80571 Indonesia
 2 [ Water Parks ] Waterbom Bali : Jl. Kartika Plaza, Kuta 80361 Indonesia
@@ -243,6 +249,7 @@ Berdasarkan nilai RMSE dari folds 1-10 menunjukkan nilai kecil yaitu 0.9 (dibawa
     - [ Waterfalls ] Tegenungan Waterfall : Jl. Raya Tegenungan, Kemenuh, Ubud 80581 Indonesia
     - [ Points of Interest & Landmarks ] Tegalalang Rice Terrace : Jalan Raya Ceking, Tegalalang 80517 Indonesia
     - [ Beaches ] Kuta Beach - Bali : Kuta
+   
 10 places to go - probably you sholud like
 1 [ Volcanos ] Mount Semeru Volcano : Malang Lumajang
 2 [ Water Parks ] Waterbom Bali : Jl. Kartika Plaza, Kuta 80361 Indonesia
