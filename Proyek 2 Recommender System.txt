@@ -1,0 +1,381 @@
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Proyek_2_Recommendation_System_0"></a>Proyek 2 Recommendation System</h1>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="1_Project_Overview_1"></a>1. Project Overview</h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Destinasi wisata adalah tujuan yang dikunjungi baik oleh wisatawan lokal maupun internasional untuk liburan atau menikmati pesona alam, budaya, dan atraksi tertentu. Setiap destinasi memiliki daya tarik dan keunikan tersendiri, seperti keindahan alam, nilai sejarah, atau aktivitas menarik yang dapat menghibur pengunjung.</p>
+<p class="has-line-data" data-line-start="5" data-line-end="6">Indonesia sendiri memiliki ratusan hingga ribuan destinasi wisata alam dan budaya yang kaya, sehingga banyak menarik perhatian wisatawan baik lokal dan mancanegara untuk menikmati khas alam dan budaya di Indonesia. Sektor wisata dengan keragaman alam bidaya di Indonesia dapat meningkatkan perekonomian Indonesia. Sehingga penting bagi pihak destinasi wisata di Indonesia untuk meningkatkan dan mempertahankan wisatawan baik lokal maupun mancanegara menjadikan destinasi wisata di Indonesia merupakan destinasi yang terbaik</p>
+<p class="has-line-data" data-line-start="7" data-line-end="8">Setiap wisatawan memiliki preferensi atraksi atau keunikan yang ingin dinikmati. Banyak calon wisatawan ingin mencoba atau mendatangi wisata yang baru atau memiliki review yang baik. Seringkali calon turis menentukan tujuan destinasinya berdasarkan pengalaman bagi turis yang memiliki riwayat kunjungan ke wisata tersebut. Namun karena banyaknya jenis dan lokasi wisata di Indonesia maka akan terlalu banyak informasi yang didapat dan kurang tepat sasaran pada calon turis sesuai preferensinya tersebut. Dengan perkembangan Machine learning, faktor tersebut dapat dibantu dengan membangun sistem yang dapat menilai atau merekomendasikan tujuan wisata sesuai dengan ciri khas yang diinginkan oleh pengunjung <a href="http://jurnal.upnyk.ac.id/index.php/telematika/article/view/3023/2443">referensi jurnal</a>.</p>
+<h2 class="code-line" data-line-start=10 data-line-end=11 ><a id="2_Business_Understanding_10"></a>2. Business Understanding</h2>
+<p class="has-line-data" data-line-start="11" data-line-end="12"><strong>- Problem Statement</strong></p>
+<p class="has-line-data" data-line-start="13" data-line-end="15">Indonesia memiliki ragam wisata yang didatangi banyak wisatawan. Dengan keragaman wisata dan banyaknya wisatawan dapat menghasilkan Data Mining yang merekam data-data transaksi wisatawan berkunjung di Indonesia. Sehingga, dapat dimanfaatkan untuk membangun sistem rekomendasi bertujuan menggali informasi dan mencari wisatawan baru.<br>
+Selain itu, banyak wisatawan mendatangi destinasi wisata sesuai dengan preferensi mereka, agar tujuan yang didatangi dapat memenuhi ekspetasi. Perlu adanya sistem rekomendasi yang dapat membaca preferensi calon wisatawan dan menyesuaikan referensi wisatawan lainnya yang memiliki riwayat menikmati wisata yang sama dengan preferensi calon wisatawan. Sehingga rekomendasi wisata akan menyesuaikan dengan preferensi calon wisatawan, dapat meningkatkan ekspetasi setelah berkunjung sesuai rekomendasi dan juga dapat menaikkan daya tarik wisata yang dapat meningkatkan perekonomian Indonesia.</p>
+<p class="has-line-data" data-line-start="17" data-line-end="18">Berdasarkan latar belakang tersebut project ini memiliki batasan masalah sebagai berikut:</p>
+<ol>
+<li class="has-line-data" data-line-start="18" data-line-end="20"><strong>Bagaimana langkah-langkah untuk membuat sistem rekomendasi untuk calon pengunjung berdasarkan referensi riwayat pengunjung?</strong><br>
+–&gt; Melakukan metode sederhana CRISP-DM (Cross-Industry Standard Process for Data Mining) yaitu mengumpulkan, membersihkan dan menganalisis data. selanjutnya melakukan fitur engineering untuk membangun model sistem rekomendasi.</li>
+<li class="has-line-data" data-line-start="20" data-line-end="22"><strong>Bagaimana atribut-atribut referensi pengunjung-pengunjung untuk menentukan destinasi wisata?</strong><br>
+–&gt; Menganalisis referensi data pengunjung wisata sebagai penilaian destinasi wisata</li>
+<li class="has-line-data" data-line-start="22" data-line-end="24"><strong>Bagaimana cara membangun model Machine Learning sebagai solusi untuk merekomendasikan destinasi wisata untuk calon pengunjung berdasarakan preferensi pengunjung tersebut?</strong><br>
+–&gt; Analisis data dan membangun model menggunakan Deep Learning dengan eksplorasi hyperparameter berdasarkan rating dan ciri khas destinasi wisata melihat pada MSE, MAE dan R2 sebagai parameter model yang memiliki error paling kecil</li>
+</ol>
+<p class="has-line-data" data-line-start="26" data-line-end="27"><strong>- Goals</strong></p>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Sistem rekomendasi destinasi wisata bertujuan bagi calon pengunjung untuk:</p>
+<ol>
+<li class="has-line-data" data-line-start="29" data-line-end="30"><strong>Merekomendasikan tujuan wisata sesuai prefernsinya berdasarkan referensi riwayat pengunjung-pengunjung sebelumnya yang memiliki kesamaan preferensi tujuan wisata</strong></li>
+<li class="has-line-data" data-line-start="30" data-line-end="31"><strong>Menilai referensi pengunjung untuk menentukan destinasi wisata</strong>,</li>
+<li class="has-line-data" data-line-start="31" data-line-end="32"><strong>Meningkatkan kepuasan para pengunjung wisaata sesuai preferensinya</strong>,</li>
+<li class="has-line-data" data-line-start="32" data-line-end="34"><strong>Mengurangi penilaian rendah pada destinasi wisata karena kurang sesuainya terhadap preferensi calon pengunjung</strong></li>
+</ol>
+<p class="has-line-data" data-line-start="34" data-line-end="36"><strong>- Solution statements</strong><br>
+Menggunakan content based filtering cosine similarity dan kernel Sigmoid, collaborative filtering algoritma recommenderNet dengan library keras dan SVD dengan library surprise yang dapat terukur baik menggunakan RMSE dan MAE</p>
+<h3 class="code-line" data-line-start=37 data-line-end=38 ><a id="3_Data_Understanding_37"></a>3. Data Understanding</h3>
+<p class="has-line-data" data-line-start="38" data-line-end="39">Data yang digunakan bersumber <a href="https://data.mendeley.com/datasets/h58s544674/1">Mendeley Data</a>, oleh kontributor <em>huda, choirul huda (2023), “Tourism Dataset”, Mendeley Data, V1, doi: 10.17632/h58s544674.1</em>. Data tersebut berisi transaksi turis pada 3 lokasi wisata yang terpopuler di Indonesia yaitu Bali, Malang dan Yogyakarta dari riwayat turis yang direkam oleh website TripAdvisor rentang waktu Oktober 2022 - January 2023. Data terdapat 9 data format xlsx. Berikut penjelasan kolom-kolom pada masing-masing data:</p>
+<ol>
+<li class="has-line-data" data-line-start="40" data-line-end="41">Data City.xlsx -&gt; master data kota persona turis. [9143 baris, 3 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="41" data-line-end="42">CityId : integer berisi identifikasi unik merepresentasikan sebuah kota | 9143 non-null</li>
+<li class="has-line-data" data-line-start="42" data-line-end="43">CityName : string berisi informasi nama kota | 9142 non-null</li>
+<li class="has-line-data" data-line-start="43" data-line-end="45">CountryId : integer berisi identifikasi unik merepresentasikan sebuah negara |9143 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="45" data-line-end="46">Data terdapat nilai null, namun tabel ini tidak diperlukan drop data karena akan digunakan referensi dari penggabungan data.</p>
+<ol start="2">
+<li class="has-line-data" data-line-start="46" data-line-end="47">Data Continent.xlsx -&gt; master data benua persona turis. [6 kolom, 2 baris]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="47" data-line-end="48">ContenetId : integer berisi identifikasi unik merepresentasikan sebuah benua | 6 non-null</li>
+<li class="has-line-data" data-line-start="48" data-line-end="50">Contenent : string berisi informasi nama benua | 6 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="50" data-line-end="51">Tidak ada nilai null</p>
+<ol start="3">
+<li class="has-line-data" data-line-start="51" data-line-end="52">Data Country.xlsx -&gt; master data negara persona turis. [165 baris, 3 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="52" data-line-end="53">CountryId : integer berisi identifikasi unik merepresentasikan sebuah negara | 165 non-null</li>
+<li class="has-line-data" data-line-start="53" data-line-end="54">Country : sting berisi informasi nama wilayah | 165 non-null</li>
+<li class="has-line-data" data-line-start="54" data-line-end="56">RegionId : integer berisi identifikasi unik merepresentasikan sebuah wilayah | 165 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Tidak ada nilai null</p>
+<ol start="4">
+<li class="has-line-data" data-line-start="57" data-line-end="58">Data Item.xlsx -&gt; master data destinasi wisata. [30 baris, 5 kolom</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="58" data-line-end="59">Attractionid : integer berisi identifikasi unik merepresentasikan sebuah wisata | 30 non-null</li>
+<li class="has-line-data" data-line-start="59" data-line-end="60">AttractionCityId : integer berisi identifikasi unik merepresentasikan sebuah lokasi kota wisata | 30 non-null</li>
+<li class="has-line-data" data-line-start="60" data-line-end="61">AttractionTypeId : integer berisi identifikasi unik merepresentasikan sebuah tipe wisata | 30 non-null</li>
+<li class="has-line-data" data-line-start="61" data-line-end="62">Attraction : string berisi informasi nama wisata |  30 non-null</li>
+<li class="has-line-data" data-line-start="62" data-line-end="64">AttractionAddress : string berisi informasi alamat wisata | 30 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Tidak ada nilai null</p>
+<ol start="5">
+<li class="has-line-data" data-line-start="65" data-line-end="66">Data Mode.xlsx -&gt; master data jenis kunjungan turis. [6 baris, 2 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="66" data-line-end="67">VisitModeId : integer berisi identifikasi unik merepresentasikan sebuah jenis kunjungan wisatawan | 6 non-null</li>
+<li class="has-line-data" data-line-start="67" data-line-end="69">VisitMode : string berisi informasi jenis kunjungan wisatawan |  6 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Tidak ada nilai null, namun pada visit mode terdapat nilai tidak konsisten yaitu nilai “-”. Hal ini tidak perlu di drop karena akan digunakan referensi penggabungan data</p>
+<ol start="6">
+<li class="has-line-data" data-line-start="70" data-line-end="71">Data Region.xlsx -&gt; master data daerah persona turis. [22 baris, 3 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="71" data-line-end="72">Region : string berisi informasi nama negara | 22 non-null</li>
+<li class="has-line-data" data-line-start="72" data-line-end="73">RegionId : integer berisi identifikasi unik merepresentasikan sebuah negara | 22 non-null</li>
+<li class="has-line-data" data-line-start="73" data-line-end="75">ContentId : integer berisi identifikasi unik merepresentasikan sebuah benua | 22 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="75" data-line-end="76">Tidak ada nilai null</p>
+<ol start="7">
+<li class="has-line-data" data-line-start="76" data-line-end="77">Data Transaction.xlsx -&gt; data transaksi turis. [52930 baris,7 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="77" data-line-end="78">TransactionId : integer berisi identifikasi unik merepresentasikan sebuah transaksi | 52930 non-null</li>
+<li class="has-line-data" data-line-start="78" data-line-end="79">UserId : integer berisi identifikasi unik merepresentasikan sebuah user/wisatawan | 52930 non-null</li>
+<li class="has-line-data" data-line-start="79" data-line-end="80">VisitYear : datetime informasi waktu tahun kunjungan wisatawan | 52930 non-null</li>
+<li class="has-line-data" data-line-start="80" data-line-end="81">VisitMonth : datetime informasi waktu bulan kunjungan wisatawan | 52930 non-null</li>
+<li class="has-line-data" data-line-start="81" data-line-end="82">VisitMode : string berisi informasi jenis kunjungan wisatawan | 52930 non-null</li>
+<li class="has-line-data" data-line-start="82" data-line-end="83">AttractionId : integer berisi identifikasi unik merepresentasikan sebuah wisata | 52930 non-null</li>
+<li class="has-line-data" data-line-start="83" data-line-end="85">Rating : integer berisi informasi rating wisatawan terhadap tempat wisata (ordinal)| 52930 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="85" data-line-end="86">Tidak ada nilai null</p>
+<ol start="8">
+<li class="has-line-data" data-line-start="86" data-line-end="87">Data Type.xlsx -&gt; master data tipe wisata. [17 baris, 2 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="87" data-line-end="88">AttractionTypeId : integer berisi identifikasi unik merepresentasikan sebuah jenis wisata | 7 non-null</li>
+<li class="has-line-data" data-line-start="88" data-line-end="90">AttractionType : string berisi informasi nama jenis wisata | 7 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="90" data-line-end="91">Tidak ada nilai null</p>
+<ol start="9">
+<li class="has-line-data" data-line-start="91" data-line-end="92">Data User.xlsx -&gt; data referesni persona turis. [33530 baris, 5 kolom]</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="92" data-line-end="93">UserId : integer berisi identifikasi unik merepresentasikan sebuah user/wisatawan |33530 non-null</li>
+<li class="has-line-data" data-line-start="93" data-line-end="94">ContenentId : integer berisi identifikasi unik merepresentasikan sebuah benua | 33530 non-null</li>
+<li class="has-line-data" data-line-start="94" data-line-end="95">RegionId : integer berisi identifikasi unik merepresentasikan sebuah wilayah | 33530 non-null</li>
+<li class="has-line-data" data-line-start="95" data-line-end="96">CountryId : integer berisi identifikasi unik merepresentasikan sebuah negara | 33530 non-null</li>
+<li class="has-line-data" data-line-start="96" data-line-end="98">CityId : integer berisi identifikasi unik merepresentasikan sebuah kota |33526 non-null</li>
+</ul>
+<p class="has-line-data" data-line-start="98" data-line-end="99">Data terdapat nilai null, namun tabel ini tidak diperlukan drop data karena akan digunakan referensi dari penggabungan data.</p>
+<p class="has-line-data" data-line-start="101" data-line-end="102">Pada informasi masing-masing data terdapat nilai null. Pembersihan data/drop data akan dilakukan setelah penggabungan data/merge data</p>
+<h4 class="code-line" data-line-start=103 data-line-end=104 ><a id="3_1_Merge_datapenggabungan_data_untuk_persiapan_data_contentbased_dan_collaborative_based_103"></a>3. 1 Merge data/penggabungan data untuk persiapan data content-based dan collaborative based</h4>
+<p class="has-line-data" data-line-start="105" data-line-end="107">Berdasarkan data understanding bahwa folder Tourism_Dataset terdapat 9 file. Pada tahap ini, akan dilakukan proses penggabungan data menampilkan informasi yang konsisten. Sesuai kebutuhan projek ini, input dan output yang akan digunakan adalah atribut-atribut pada destinasi wisata. Maka akan dilakukan<br>
+merge data destinasi wisata yang  berisi informasi tujuan wisata berdasarkan lokasi, type wisata, kunjungan dsb</p>
+<p class="has-line-data" data-line-start="108" data-line-end="109">Data yang akan digunakan adalah data merge destinasi wisata terdiri gabungan data Item.xlsx, Type.xlsx, Transaction.xlsx, Terdiri kolom-kolom:</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>No</th>
+<th>Nama Kolom</th>
+<th>Jumlah Baris non_null</th>
+<th>Tipe Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>TransactionId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>1</td>
+<td>UserId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>2</td>
+<td>VisitYear</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>3</td>
+<td>VisitMonth</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>4</td>
+<td>VisitModeId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>5</td>
+<td>AttractionId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Rating</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>7</td>
+<td>AttractionCityId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>8</td>
+<td>AttractionTypeId</td>
+<td>52930 non-null</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Attraction</td>
+<td>52930 non-null</td>
+<td>object</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AttractionAddress</td>
+<td>52930 non-null</td>
+<td>object</td>
+</tr>
+<tr>
+<td>11</td>
+<td>AttractionType</td>
+<td>52930 non-null</td>
+<td>object</td>
+</tr>
+<tr>
+<td>12</td>
+<td>VisitMode</td>
+<td>52930 non-null</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="125" data-line-end="126">Berdasarkan tabel informasi diatas setiap kolom memiliki jumlah baris non-null dapat diartikan tidak ada nilai masing-masing kolom yang bernilai Null</p>
+<h4 class="code-line" data-line-start=127 data-line-end=128 ><a id="3_2_Pembersihan_data_127"></a>3. 2 Pembersihan data</h4>
+<p class="has-line-data" data-line-start="128" data-line-end="129">Berdasarkan informasi data, data tidak terdapat Null dan tidak ada duplikat</p>
+<h4 class="code-line" data-line-start=130 data-line-end=131 ><a id="3_3_EDA_data_detinasi_wisata_di_Indonesia_130"></a>3. 3 EDA data detinasi wisata di Indonesia</h4>
+<p class="has-line-data" data-line-start="131" data-line-end="132">Berdasarkan EDA data destinasi selama Oktober 2022 hingga January 2023 menunjukkan</p>
+<ol>
+<li class="has-line-data" data-line-start="132" data-line-end="133">5 terbanyak destinasi wisata dengan jumlah pengunjung wisata terdapat pada tempat wisata Bali&quot;:</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="133" data-line-end="134">Sacred Monkey Forest Sactuary = ±13000 pengunjung</li>
+<li class="has-line-data" data-line-start="134" data-line-end="135">Waterbom Bali = ±7000 pengunjung</li>
+<li class="has-line-data" data-line-start="135" data-line-end="136">Tegalalang Rice Terrace = ±5800 pengunjung</li>
+<li class="has-line-data" data-line-start="136" data-line-end="137">Uluwatu temple = ±3800 pengunjung</li>
+<li class="has-line-data" data-line-start="137" data-line-end="139">Tanah Lot Temple = ±3800 pengunjung</li>
+</ul>
+<ol start="2">
+<li class="has-line-data" data-line-start="139" data-line-end="140">Wisata dengan rating &gt;= 3</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="140" data-line-end="141">Sacred Monkey Forest Sactuary</li>
+<li class="has-line-data" data-line-start="141" data-line-end="142">Waterbom Bali</li>
+<li class="has-line-data" data-line-start="142" data-line-end="143">Tegalalang Rice Terrace</li>
+<li class="has-line-data" data-line-start="143" data-line-end="144">Uluwatu temple</li>
+<li class="has-line-data" data-line-start="144" data-line-end="146">Tanah Lot Temple</li>
+</ul>
+<ol start="3">
+<li class="has-line-data" data-line-start="146" data-line-end="147">Jenis kunjungan di Indonesia</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="147" data-line-end="148">Pada kunjungan wisata Bali sebanyak 43.4% couples (family, friends)</li>
+<li class="has-line-data" data-line-start="148" data-line-end="149">Pada kunjungan wisata Malang sebanyak 39.6% friends (family, couple)</li>
+<li class="has-line-data" data-line-start="149" data-line-end="151">Pada kunjungna wisata Yogyakarta sebanyak 30.1% friends (couple, family)</li>
+</ul>
+<ol start="4">
+<li class="has-line-data" data-line-start="151" data-line-end="152">Jenis kunjungan pada wisata 5 jenis di I</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="152" data-line-end="153">Nature Wilds Area -&gt; couple</li>
+<li class="has-line-data" data-line-start="153" data-line-end="154">Beaches -&gt; couple</li>
+<li class="has-line-data" data-line-start="154" data-line-end="155">Religious Sites -&gt; couple</li>
+<li class="has-line-data" data-line-start="155" data-line-end="156">Water Parks -&gt; Family</li>
+<li class="has-line-data" data-line-start="156" data-line-end="158">Points of Interest and Landmarks -&gt; couple</li>
+</ul>
+<p class="has-line-data" data-line-start="158" data-line-end="159">Summary Visualisasi Data dalam rentang waktu Oktober 2022 - January 2023: Wisata berlokasi di Bali merupakan tujuan wisatawan terbanyak dibandingkan lokasi Malang Jawa Timur dan Yogyakarta area DI Yogyakarta. Wisata di Bali didominasi wisatawan adalah jenis wisata Nature &amp; Wildlife Areas, Water Parks, Points of Interest &amp; Landmarks, Religious Sites. Selain itu banyak pengunjung dengan tujuan daerah Bali dengan pengunjung Couple disusul pengunjung Familiy dan Friends. Sacred Monkey Forest Sactuary merupakan wisata Nature &amp; Wildlife Areas terfavorit wisatawan dengan rating lebih dari 3 dari wisata di Bali lainnya.</p>
+<h3 class="code-line" data-line-start=161 data-line-end=162 ><a id="4_Data_Preparation_161"></a>4. Data Preparation</h3>
+<h4 class="code-line" data-line-start=162 data-line-end=163 ><a id="4_1_Data_Preparation_Modelling_for_Content_Based__Cosine_Similarity_dan_Kernel_Sigmoid_162"></a>4. 1 Data Preparation Modelling for Content Based -&gt; Cosine Similarity dan Kernel Sigmoid</h4>
+<ol>
+<li class="has-line-data" data-line-start="163" data-line-end="164">Text Cleaning : Pada value kolom yang akan digunakan NewAttraction dan NewAttractionType setiap kata terdapat spasi, jika dilakukan mapping Vectorizer akan menampilkan value kolom yang tidak sesuai. Sehingga perlu cleaning teks pada simbol-simbol dan mengganti spasi dengan underscore</li>
+<li class="has-line-data" data-line-start="164" data-line-end="165">Nilai unik pada pada item yang digunakan berjumlah 148, maka saat di vektorisasi akan 148x148</li>
+<li class="has-line-data" data-line-start="165" data-line-end="166">Membuang kolom yang tidak digunakan</li>
+<li class="has-line-data" data-line-start="166" data-line-end="167">Melakukan feture Engineering TF-IDF Vectorizer</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="167" data-line-end="168">membuat fitur kolom</li>
+<li class="has-line-data" data-line-start="168" data-line-end="170">transformasi matriks dai sparse (banyak 0) ke dense (lebih padat)</li>
+</ul>
+<h4 class="code-line" data-line-start=170 data-line-end=171 ><a id="4_2_Data_Preparation_Modelling_for_Collaborative__Neural_Network_170"></a>4. 2 Data Preparation Modelling for Collaborative -&gt; Neural Network</h4>
+<ol>
+<li class="has-line-data" data-line-start="171" data-line-end="172">Mengkonversi encoding pada kolom ‘UserId’ dan ‘AttractionId’-&gt; jumlah unik UserId 33530 dan Attraction 30</li>
+<li class="has-line-data" data-line-start="172" data-line-end="173">Standarisasi nilai kolom ‘Rating’ menjadi range 0-1</li>
+<li class="has-line-data" data-line-start="173" data-line-end="175">Data splitting dengan rasio 80:20</li>
+</ol>
+<h4 class="code-line" data-line-start=175 data-line-end=176 ><a id="4_3_Data_Preparation_Modelling_for_Collaborative__SVD_175"></a>4. 3 Data Preparation Modelling for Collaborative -&gt; SVD</h4>
+<ol>
+<li class="has-line-data" data-line-start="176" data-line-end="177">Menginstall library surprise</li>
+<li class="has-line-data" data-line-start="177" data-line-end="178">Mempersiapkan data yang akan digunakan</li>
+<li class="has-line-data" data-line-start="178" data-line-end="180">Mengkonversi data ke format laten dengan mengubah DataFrame menjadi format standar library Suprise dan membuat skala rating 1-5</li>
+</ol>
+<h2 class="code-line" data-line-start=180 data-line-end=181 ><a id="5_Build_Model_180"></a>5. Build Model</h2>
+<h4 class="code-line" data-line-start=181 data-line-end=182 ><a id="5_1_Content_Based_Cosine_Similarity_181"></a>5. 1 Content Based Cosine Similarity</h4>
+<ol>
+<li class="has-line-data" data-line-start="183" data-line-end="185">Menghitung kesamaan antar item<br>
+Cosine similarity mengukur kesamaan antara dua vektor dan menentukan apakah kedua vektor tersebut menunjuk ke arah yang sama. Ia menghitung sudut cosinus antara dua vektor. Semakin kecil sudut cosinus, semakin besar nilai cosine similarity. cosine similarity digunakan untuk mengukur kesamaan nama wisata sesuai mode kunjungan dan jenis wisata sesuai mode kunjungan. Sehingga wisata memiliki kesamaan pada jenis wisata dan mode kunjungan satu antar lainnya</li>
+<li class="has-line-data" data-line-start="185" data-line-end="188">Implementasi hasil model<br>
+Input wisata -&gt; ‘Sanur Beach’</li>
+</ol>
+<p class="has-line-data" data-line-start="188" data-line-end="200"><strong><em>=== Recommendation System Content Based-Cosine Similarity ===</em></strong><br>
+======= 10 places to go based on item --&gt; Sanur Beach ========<br>
+1 Balekambang Beach : Malang District<br>
+2 Goa Cina Beach : Dusun Trowotratih, Desa Sitiarjo Kecamatan Sumbermanjing Wetan, Malang 65111 Indonesia<br>
+3 Kuta Beach  Bali : Kuta<br>
+4 Seminyak Beach : Seminyak<br>
+5 Nusa Dua Beach : Semenanjung Nusa Dua, Nusa Dua 80517 Indonesia<br>
+6 Sempu Island : Sumber Manjing Wetan, Malang 65111 Indonesia<br>
+7 Jodipan Colorful Village : Gang 1 Jodipan, Kesatrian, Kec. Blimbing, Malang 65126 Indonesia<br>
+8 Mount Semeru Volcano : Malang Lumajang<br>
+9 Bromo Tengger Semeru National Park : Asrikaton - Pakis, Malang 65100 Indonesia<br>
+10 Waterbom Bali : Jl. Kartika Plaza, Kuta 80361 Indonesia</p>
+<h4 class="code-line" data-line-start=201 data-line-end=202 ><a id="5_2_Collaborative_Based_NN_201"></a>5. 2 Collaborative Based NN</h4>
+<ol>
+<li class="has-line-data" data-line-start="203" data-line-end="206">Setting parameter model<br>
+Kode class RecommenderNet ini terinspirasi dari tutorial dalam situs Keras dengan beberapa adaptasi sesuai kasus sistem rekomendasi. Menggunakan embedding_size = 35, embedding_initializer = ‘he_normal’, embeddings_regularizer = L2 norm, aktivasi = sigmoid.<br>
+Model ini menggunakan Binary Crossentropy untuk menghitung loss function, Adam (Adaptive Moment Estimation) sebagai optimizer, dan root mean squared error (RMSE) sebagai metrics evaluation.</li>
+<li class="has-line-data" data-line-start="206" data-line-end="207">Training model</li>
+</ol>
+<ul>
+<li class="has-line-data" data-line-start="207" data-line-end="208">Batch_size=32</li>
+<li class="has-line-data" data-line-start="208" data-line-end="209">epochs=15</li>
+</ul>
+<ol start="3">
+<li class="has-line-data" data-line-start="209" data-line-end="212">Melihat grafik MSE<br>
+proses training model cukup smooth dan model konvergen pada epochs sekitar 15. Dari proses ini, kita memperoleh nilai error akhir sebesar sekitar 0.19 dan error pada data validasi sebesar 0.34.</li>
+</ol>
+<p class="has-line-data" data-line-start="212" data-line-end="213">Nilai RMSE menunjukkan 0.2 dimana selama training nilai RMSE menurun dapat diartikan error semakin kecil</p>
+<ol start="4">
+<li class="has-line-data" data-line-start="214" data-line-end="233">Hasil implementasi model<br>
+<strong><em>=== Recommendation System Collaborative Based-Neural Network RecommenderNet ===</em></strong><br>
+-&gt;Showing recommendations for users: 9409<br>
+-&gt;Recent destinattion with high ratings from user
+<ul>
+<li class="has-line-data" data-line-start="218" data-line-end="219">[ Points of Interest &amp; Landmarks ] Tegalalang Rice Terrace : Jalan Raya Ceking, Tegalalang 80517 Indonesia</li>
+<li class="has-line-data" data-line-start="219" data-line-end="220">[ Waterfalls ] Tegenungan Waterfall : Jl. Raya Tegenungan, Kemenuh, Ubud 80581 Indonesia</li>
+<li class="has-line-data" data-line-start="220" data-line-end="233">[ Beaches ] Kuta Beach - Bali : Kuta<br>
+10 places to go - recommended<br>
+1 [ Nature &amp; Wildlife Areas ] Sacred Monkey Forest Sanctuary : Jl. Monkey Forest, Ubud 80571 Indonesia<br>
+2 [ Water Parks ] Waterbom Bali : Jl. Kartika Plaza, Kuta 80361 Indonesia<br>
+3 [ Beaches ] Nusa Dua Beach : Semenanjung Nusa Dua, Nusa Dua 80517 Indonesia<br>
+4 [ Religious Sites ] Uluwatu Temple : Jl. Raya Uluwatu Southern part of Bali, Pecatu 80361 Indonesia<br>
+5 [ Religious Sites ] Tanah Lot Temple : Kecamatan Kediri, Kabupaten Tabanan, Beraban 82121 Indonesia<br>
+6 [ National Parks ] Bromo Tengger Semeru National Park : Asrikaton - Pakis, Malang 65100 Indonesia<br>
+7 [ Volcanos ] Mount Semeru Volcano : Malang Lumajang<br>
+8 [ Spas ] Khayangan Reflexology &amp; Massage : Malang<br>
+9 [ Caverns &amp; Caves ] Jomblang Cave : Jetis Wetan, Pacarejo, Semanu 55581 Indonesia<br>
+10 [ History Museums ] Ullen Sentalu Museum : Jl. Boyong Taman Wisata, 55581 Indonesia</li>
+</ul>
+</li>
+</ol>
+<h4 class="code-line" data-line-start=233 data-line-end=234 ><a id="5_3_Collaborative_Based_SVD_233"></a>5. 3 Collaborative Based SVD</h4>
+<ol>
+<li class="has-line-data" data-line-start="234" data-line-end="237">Training with Cross Validation 10 folds<br>
+Proses implementasi model menggunalakn algoritma SVD menggunakan crsoo-validation menjadi 10 folds. Nilai metrik yang akan digunakan adalah MSE dan MAE pada tiap folds apakah menunjukkan perbedaan signifikan (melihat nilai Standar Deviasi) dan besar nilai keduanya.</li>
+</ol>
+<p class="has-line-data" data-line-start="237" data-line-end="238">Berdasarkan nilai RMSE dari folds 1-10 menunjukkan nilai kecil yaitu 0.9 (dibawah 1, jika semakin besar cth 2.xx/5.xx maka buruk) dapat dikatakan prediksi baik. Dan nilai MAE yang kecil. Nilai STD menunjukkan nilai kecil sehingga hasil nilai MSE dan MAE masing-masing folds konsisten.</p>
+<ol start="2">
+<li class="has-line-data" data-line-start="239" data-line-end="257">
+<p class="has-line-data" data-line-start="239" data-line-end="240">Hasil Implementasi Model</p>
+<p class="has-line-data" data-line-start="241" data-line-end="242">Showing recent for users: 9409</p>
+<ul>
+<li class="has-line-data" data-line-start="242" data-line-end="243">[ Waterfalls ] Tegenungan Waterfall : Jl. Raya Tegenungan, Kemenuh, Ubud 80581 Indonesia</li>
+<li class="has-line-data" data-line-start="243" data-line-end="244">[ Points of Interest &amp; Landmarks ] Tegalalang Rice Terrace : Jalan Raya Ceking, Tegalalang 80517 Indonesia</li>
+<li class="has-line-data" data-line-start="244" data-line-end="257">[ Beaches ] Kuta Beach - Bali : Kuta<br>
+10 places to go - probably you sholud like<br>
+1 [ Volcanos ] Mount Semeru Volcano : Malang Lumajang<br>
+2 [ Water Parks ] Waterbom Bali : Jl. Kartika Plaza, Kuta 80361 Indonesia<br>
+3 [ National Parks ] Bromo Tengger Semeru National Park : Asrikaton - Pakis, Malang 65100 Indonesia<br>
+4 [ Caverns &amp; Caves ] Jomblang Cave : Jetis Wetan, Pacarejo, Semanu 55581 Indonesia<br>
+5 [ History Museums ] Ullen Sentalu Museum : Jl. Boyong Taman Wisata, 55581 Indonesia<br>
+6 [ Religious Sites ] Tanah Lot Temple : Kecamatan Kediri, Kabupaten Tabanan, Beraban 82121 Indonesia<br>
+7 [ Spas ] Khayangan Reflexology &amp; Massage : Malang<br>
+8 [ Nature &amp; Wildlife Areas ] Sempu Island : Sumber Manjing Wetan, Malang 65111 Indonesia<br>
+9 [ Neighborhoods ] Jodipan Colorful Village : Gang 1 Jodipan, Kesatrian, Kec. Blimbing, Malang 65126 Indonesia<br>
+10 [ Speciality Museums ] Museum Malang Tempo Doeloe : Jl. Gajahmada no. 2, Malang 65119 Indonesia</li>
+</ul>
+</li>
+</ol>
+<h2 class="code-line" data-line-start=257 data-line-end=258 ><a id="6_Evaluasi_257"></a>6. Evaluasi</h2>
+<p class="has-line-data" data-line-start="258" data-line-end="260">Metrik pada model sistem rekomendasi berfokus pada RMSE dan MAE. RMSE merupakan mengukur akar dari rata-rata kuadrat selisih antara nilai prediksi dan nilai aktual, sehingga dapat menekankan kesalahan yang lebih besar, karena nilai kesalahan dikuadratkan. Sehingga dengan nilai RMSE kecil menunjukkan nilai error yang kecil juga<br>
+Selain itu metrik MAE digunakan untuk mengukur kesalahan dengan nilai rata-rata absolut antara nilai prediksi dan nilai aktual. MAE membantu mengukur seberapa besar rata-rata perbedaan antara nilai aktual dan nilai prediksi. Dengan nilai MAE yang semakin kecil menunjukkan nilai kedua tersebut memiliki error yang kecil</p>
+<ol>
+<li class="has-line-data" data-line-start="261" data-line-end="265">Content based<br>
+Berdasarkan 2 teknik untuk menemukan pola hubungan antar item, penggunaan cosine_similarity dapat menunjukkan item yang memiliki kesamaan dengan item yang diinput. Cosine similarity merupakan metrik untuk mengukur kemiripan antara 2 vector dimana berdasarkan sudut kosinus. Pada atribut yang memiliki nilai 1 merupakan atribut yang memilki kesamaan sedangkan nilai 0 atribut tidak memiliki kesamaan<br>
+Kernel sigmoid menggunakan fungsi sigmoid dalam menghitung kesamaan antara dua vektor dalam ruang fitur. Pada umumnya fungsi ini digunakan pada pendekatan hubungan yang non-linear.<br>
+Hasil pengembangan menggunakan kedua metode dapat menunjukkan 10 rekomendasi yang relate dengan input. Metode cosine similarity lebih memiliki kesamaan yang lebih dekat karena menggunakan skor kesamaan berbasis vektor dan kedua atribut memiliki hubungan/lineraritas (jenis wisata dan tempat wisata)</li>
+</ol>
+<ol start="2">
+<li class="has-line-data" data-line-start="267" data-line-end="271">Collaborative based<br>
+Hasil penggunaan 2 algoritma adalah model dapat merekomendasi destinasi wisata. Pada penggunaan Neural Network menunjukkan nilai error MAE dan RMSE yang semakin rendah sekitar 0.19 sedangkan algoritma SVD sekitar 0.9-0.7. Algoritma NN dapat menunjukkan 10 rekomendasi teratas menyesuaikan jenis wisata yang mirip, frekuensi destinasi wisata yang banyak dikunjungi wisatawan dan rating detinasi wisata (membandingkan melihat hasil EDA-seperti jenis wisata yang sering muncul)<br>
+Pada algoritma SVD 10 rekomendasi teratas berdasarkan prediksi baru dari perhitungan fitur laten rating dan destinasi wisata. Sehingga rekomendasi menunjukkan destinasi wisata dengan kemiripan wisata yang tesembunyi (tidak terlalu menonjol dapat dilihat dengan perbandingan EDA) dan menghasilkan prediksi rating baru yang kemungkinan akan mirip dengan riwayat destinasi wisatawan. Sehingga model ini cocok untuk mengenalkan wisata baru.<br>
+Pada projek ini hasil sistem rekomendasi penggunaan algoritma NN menunjukkan nilai RMSE dan MAE lebih rendah dibandingkan menggunakan algoritma SVD. Selain itu hasil algoritma NN mendekati dengan hasil EDA dimana dengan jenis wisata dan destinasi wisata yang direkomendasikan sering muncul dan mendekati dengan jumlah rating yang tingga pada data, sesuai banyaknya riwayat kunjungan tiap pengunjung. Sedangkan SVD perlu dievaluasi kembali dan eksplore lagi pada proses training model karna saat ini menggunakan cross-validaton dan pengkonversian data yang menggunakan library surprise dan fitur laten.</li>
+</ol>
